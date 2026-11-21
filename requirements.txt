@@ -1,0 +1,17 @@
+# SpeakAI AI-service (Python 3.10 – 3.12)
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+python-dotenv>=1.0
+requests>=2.31
+numpy>=1.26
+scipy>=1.11
+
+# Speech-to-Text
+faster-whisper>=1.0.3
+
+# Text-to-Speech (MMS-TTS) va tarjima (NLLB)
+torch>=2.2
+transformers>=4.40
+sentencepiece>=0.2
+langdetect>=1.0.9

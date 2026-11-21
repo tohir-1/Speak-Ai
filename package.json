@@ -1,0 +1,24 @@
+{
+  "name": "speakai",
+  "version": "1.0.0",
+  "description": "SpeakAI — Telegram bot: Ovoz→Matn, Matn→Ovoz, Voice Changer, Tarjima, AI Xulosa (100% bepul open-source)",
+  "main": "bot/index.js",
+  "private": true,
+  "engines": { "node": ">=18.17" },
+  "scripts": {
+    "start": "node bot/index.js",
+    "admin": "node admin/standalone.js",
+    "test:effects": "node audio/selftest.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.3.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "telegraf": "^4.16.3"
+  }
+}

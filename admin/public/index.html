@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpeakAI — Admin</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎙️%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <main id="loginView" class="login hidden">
+    <form id="loginForm" class="card login-card" autocomplete="on">
+      <div class="logo">🎙️ SpeakAI</div>
+      <p class="muted">Admin panelga kirish</p>
+      <label>Login<input id="loginUser" name="username" autocomplete="username" required /></label>
+      <label>Parol<input id="loginPass" name="password" type="password" autocomplete="current-password" required /></label>
+      <p id="loginError" class="error"></p>
+      <button class="btn primary" type="submit">Kirish</button>
+    </form>
+  </main>
+
+  <!-- APP -->
+  <div id="appView" class="app hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="logo">🎙️ SpeakAI</div>
+      <nav>
+        <a href="#dashboard" data-page="dashboard">📊 <span>Dashboard</span></a>
+        <a href="#users" data-page="users">👥 <span>Foydalanuvchilar</span></a>
+        <a href="#control" data-page="control">🛠 <span>Bot boshqaruvi</span></a>
+      </nav>
+      <div class="sidebar-foot">
+        <div id="meName" class="muted"></div>
+        <button id="logoutBtn" class="btn ghost">Chiqish</button>
+      </div>
+    </aside>
+    <div id="backdrop" class="backdrop"></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button id="menuBtn" class="btn ghost icon" aria-label="Menyu">☰</button>
+        <h1 id="pageTitle">Dashboard</h1>
+      </header>
+
+      <!-- Dashboard -->
+      <section id="page-dashboard" class="page">
+        <div id="cards" class="grid cards"></div>
+        <div class="grid two">
+          <div class="card"><h3>So‘nggi 14 kun</h3><div class="legend"><span class="dot d1"></span>Yangi foydalanuvchilar <span class="dot d2"></span>Bajarilgan ishlar</div><canvas id="chart" height="260"></canvas></div>
+          <div class="card"><h3>🏆 Top referrallar</h3><div id="topRef" class="list"></div></div>
+        </div>
+      </section>
+
+      <!-- Users -->
+      <section id="page-users" class="page hidden">
+        <div class="card">
+          <div class="toolbar">
+            <input id="userSearch" type="search" placeholder="ID yoki username bo‘yicha qidirish..." />
+            <span id="userTotal" class="muted"></span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Username</th><th>Ism</th><th>Ro‘yxatdan o‘tgan</th><th>🎤</th><th>🔊</th><th>🎭</th><th>👥</th><th>Holat</th><th></th></tr></thead>
+              <tbody id="userRows"></tbody>
+            </table>
+          </div>
+          <div class="pager"><button id="prevPage" class="btn ghost">← Oldingi</button><span id="pageInfo" class="muted"></span><button id="nextPage" class="btn ghost">Keyingi →</button></div>
+        </div>
+      </section>
+
+      <!-- Control -->
+      <section id="page-control" class="page hidden">
+        <div class="grid two">
+          <div class="card">
+            <h3>📣 Broadcast</h3>
+            <p class="muted">Barcha bloklanmagan foydalanuvchilarga xabar yuboriladi.</p>
+            <textarea id="bcText" rows="5" maxlength="4000" placeholder="Xabar matni..."></textarea>
+            <div class="row"><button id="bcSend" class="btn primary">Yuborish</button><span id="bcStatus" class="muted"></span></div>
+          </div>
+          <div class="card">
+            <h3>⚙️ Xizmatlar</h3>
+            <div id="services" class="switches"></div>
+            <h3 class="mt">ℹ️ “Bot haqida” matni</h3>
+            <p class="muted">Telegram HTML: &lt;b&gt;, &lt;i&gt;, &lt;code&gt;, &lt;a href&gt; qo‘llab-quvvatlanadi.</p>
+            <textarea id="aboutText" rows="6" maxlength="3000"></textarea>
+            <div class="row"><button id="saveSettings" class="btn primary">Saqlash</button><span id="settingsStatus" class="muted"></span></div>
+          </div>
+        </div>
+        <div class="card mt">
+          <h3>🔐 Adminlar</h3>
+          <div class="table-wrap"><table><thead><tr><th>ID</th><th>Login</th><th>Telegram ID</th><th>Qo‘shilgan</th><th></th></tr></thead><tbody id="adminRows"></tbody></table></div>
+          <form id="adminForm" class="inline-form">
+            <input id="newAdminUser" placeholder="Login" required minlength="3" maxlength="32" />
+            <input id="newAdminPass" type="password" placeholder="Parol (kamida 8)" required minlength="8" autocomplete="new-password" />
+            <input id="newAdminTg" placeholder="Telegram ID (ixtiyoriy)" inputmode="numeric" />
+            <button class="btn primary" type="submit">Admin qo‘shish</button>
+          </form>
+          <p id="adminMsg" class="muted"></p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- User modal -->
+  <div id="modal" class="modal hidden"><div class="card modal-card"><button id="modalClose" class="btn ghost icon">✕</button><div id="modalBody"></div></div></div>
+  <div id="toast" class="toast hidden"></div>
+  <script src="script.js"></script>
+</body>
+</html>
